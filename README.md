@@ -54,14 +54,17 @@ directory
 ![1.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6f187ca2fc2a4d0589c54fe16c075ecb~tplv-k3u1fbpfcp-watermark.image)
 
 2. 点击 Browse Source 选择 zlib-1.2.8 
-![2.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6f187ca2fc2a4d0589c54fe16c075ecb~tplv-k3u1fbpfcp-watermark.image)
+
+![2.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ea07cb1c57d7422ca4ba3a03f4fb3a1a~tplv-k3u1fbpfcp-watermark.image)
 3. 点击 Browse Build 选择 zlib-1.2.8/build 目录
 
 4. 点击 Configure(生成CMake Cahce) 选择 Visual Studio 
 2019 和 x64点击 Finish 等待输出消息  Configuring done
-![3.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6f187ca2fc2a4d0589c54fe16c075ecb~tplv-k3u1fbpfcp-watermark.image)
+
+![3.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/30ddfdb095ba42dbaafffbb06c8e2dc7~tplv-k3u1fbpfcp-watermark.image)
 5. 点击 Generate(生成Visual Studio的*.sln)  等待输出消息 Generating  done
-![4.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6f187ca2fc2a4d0589c54fe16c075ecb~tplv-k3u1fbpfcp-watermark.image)
+
+![4.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3da542091b814c608ba9f4bea4fd2559~tplv-k3u1fbpfcp-watermark.image)
 6. 点击 Open Project，会在 Visual Studio 
 2019 中打开
 
@@ -72,8 +75,8 @@ directory
     (2). 在zlibstatic项目上右击–>生成  等待 输出窗口提示生成成功 (2个)
 
     (3). zlib的debug、X64版的静态链接库已经编译成功。
-    ![5.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6f187ca2fc2a4d0589c54fe16c075ecb~tplv-k3u1fbpfcp-watermark.image)
 
+    ![5.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3280b06039684e1da05855fdd2c762c4~tplv-k3u1fbpfcp-watermark.image)
 8. 生成release版的静态链接库。
 
     (1). 确认解决方案为release、X64平台。
@@ -81,7 +84,8 @@ directory
     (2). 在zlibstatic项目上右击–>生成  等待 输出窗口提示生成成功 (2个)
 
     (3). zlib的release、X64版的静态链接库已经编译成功。
-    ![6.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6f187ca2fc2a4d0589c54fe16c075ecb~tplv-k3u1fbpfcp-watermark.image)
+    
+![6.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b1b06e4a7b174bf18a127ba0d82842cd~tplv-k3u1fbpfcp-watermark.image)
 
 9. `最重要的一步 复制  zlib-1.2.8/build/zconf.h 文件到 zlib-1.2.8/`
 
@@ -100,7 +104,7 @@ directory
     ZLIB_LIBRARY_DEBUG     C:\c++\zlib-1.2.8\build\Debug\zlibstatic.lib
     ZLIB_LIBRARY_RELEASE   C:\c++\zlib-1.2.8\build\Release\zlibstatic.lib
     ```
-    ![7.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6f187ca2fc2a4d0589c54fe16c075ecb~tplv-k3u1fbpfcp-watermark.image)
+   ![7.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/579c49ea039745b4b7a9fff9bbdf7d6b~tplv-k3u1fbpfcp-watermark.image)
 5. 单击 Generate，生成Visual Studio 2019的*.sln项目。
 6. 点击 Open Project，会在 Visual Studio 2019 中打开
 
