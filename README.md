@@ -1,34 +1,114 @@
-# CMake in windows or MacOS or linux
+# 二进制程序编译 exe程序，CMake minGW练习
 
-CMake下载地址: https://cmake.org/download/
+## 工具准备 
+
+CMake: https://cmake.org/
+
+Visual Studio 2019: https://visualstudio.microsoft.com/zh-hans/
+
+## 下载 libpng-1.6.35 源码    Download the libpng-1.6.35 source code
+
+libpng: https://github.com/glennrp/libpng/releases/tag/v1.6.35
+
+解压 libpng-1.6.35.tar.gz
+
+```
+directory
+|-libpng-1.6.35
+
+```
+## 打开 zlib.props  文件，查看依赖zlib的版本
+
+libpng > projects -> vstudio ->  zlib.props 
+
+```
+line 34  <ZLibSrcDir>..\..\..\..\zlib-1.2.8</ZLibSrcDir>
+```
+
+## 下载 zlib-1.2.8 源码  Download the zlib-1.2.8 source code
+
+zlib : https://github.com/madler/zlib/releases/tag/v1.2.8
+
+解压 zlib-1.2.8.tar.gz
+```
+directory
+|-libpng-1.6.35
+|-zlib-1.2.8
+
+```
+
+## 编译 zlib-1.2.8
+
+1. 打开 CMake gui
+![CMake gui](./img/1.png)
+
+2. 点击 Browse Source 选择 zlib-1.2.8 
+![CMake gui](./img/2.png)
+3. 点击 Browse Build 选择 zlib-1.2.8/build 目录
+
+4. 点击 Configure(生成CMake Cahce) 选择 Visual Studio 
+2019 和 x64点击 Finish 等待输出消息  Configuring done
+![CMake gui](./img/3.png)
+5. 点击 Generate(生成Visual Studio的*.sln)  等待输出消息 Generating  done
+![CMake gui](./img/4.png)
+6. 点击 Open Project，会在 Visual Studio 
+2019 中打开
+
+7. 生成debug版的静态链接库。
+   
+    (1). 确认解决方案为debug、X64平台。
+    
+    (2). 在zlibstatic项目上右击–>生成  等待 输出窗口提示生成成功 (2个)
+
+    (3). zlib的debug、X64版的静态链接库已经编译成功。
+    ![生成debug版的静态链接库](./img/5.png)
+
+8. 生成release版的静态链接库。
+
+    (1). 确认解决方案为release、X64平台。
+
+    (2). 在zlibstatic项目上右击–>生成  等待 输出窗口提示生成成功 (2个)
+
+    (3). zlib的release、X64版的静态链接库已经编译成功。
+    ![生成debug版的静态链接库](./img/6.png)
+
+9. `最重要的一步 复制  zlib-1.2.8/build/zconf.h 文件到 zlib-1.2.8/`
+
+## 编译 libpng-1.6.35
+
+1. 打开 CMake gui
+
+2. 点击 Browse Source 选择 zlib-1.2.8 
+
+3. 点击 Browse Build 选择 zlib-1.2.8/build 目录
+
+4. 勾选 Advanced, 修改 ZLIB_INCLUDE_DIR,ZLIB_LIBRARY_DEBUG、ZLIB_LIBRARY_RELEASE 后点击 Configure
+
+    ```
+    ZLIB_INCLUDE_DIR       C:\c++\zlib-1.2.8
+    ZLIB_LIBRARY_DEBUG     C:\c++\zlib-1.2.8\build\Debug\zlibstatic.lib
+    ZLIB_LIBRARY_RELEASE   C:\c++\zlib-1.2.8\build\Release\zlibstatic.lib
+    ```
+    ![生成debug版的静态链接库](./img/7.png)
+5. 单击 Generate，生成Visual Studio 2019的*.sln项目。
+6. 点击 Open Project，会在 Visual Studio 2019 中打开
+
+7. 在Visual Studio 2019中分别以Debug和Release方式编译`png_static`项目。
 
 
-[Effective Modern CMake](https://gist.github.com/mbinna/c61dbb39bca0e4fb7d1f73b0d66a4fd1)
+
+## 编译 mozjpeg-4.0.3
+
+ 没有前置依赖  按上面的流程即可
+
+## 我想用 minGW 怎么编译？
+
+1. 在 CMake gui 中，点击 Configure ，选择 “MinGW Makefile” 等待  Configuring done
+2. 点击 Generate 等待  Generate done
+3. 打开 cmd,执行命令 `cd  C:\c++\zlib-1.2.8\build\`
+4. 执行 minGW32-make (每个安装的minGW make命令可能不一样 自行选择即可)
 
 
-## 环境win10
+## 编译出来的 exe我单独复制出来不能怎么回事？
 
-找到cmake 安装目录
-
-
-### window上安装 libjpeg
-
-0. [下载页](http://www.ijg.org/) 下载  jpegsr9d.zip 解压
-
-1. 找到jconfig.vc，复制并改名为jconfig.h，否则会产生无法生成jconfig的警告
-
-2. 找到makefile.vc这个文件, 第十二行代码`!include <win32.mak>` 改为电脑路径你电脑上的路径
-
-3. 有的电脑木有,所以自己写个[win32.mak](https://github.com/AlanSean/cmake-backUp/blob/main/win32.mak)
-
-4. 开始栏 搜索 VS2015 x86 Native Tools Command Prompt 打开 进入 libjpeg目录 运行命令 nmake -f makefile.vc
-
-
-#### jpegoptim在window环境编译时-运行NMAKE时，报错 找不到CMake 实例
-
-问题: could not find any instance of Visual Studio.CMake
-
-1. 打开 Visual Studio Installer 
-2. 工作负载下 选中  c++的桌面开发、通用windows平台开发 和 Visual Studio 扩展开发
-3. 单个组件下 选中 <用于CMake和Linux的Visual C++工具>和<用于CMake的Visual C++工具>
-4. 重启 修复了
+因为 应用程序 需要依赖 某个dll，将这个dll 放在和exe程序同一位置即可
