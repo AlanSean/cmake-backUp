@@ -55,3 +55,10 @@ cmake ../.. -DPNG_SUPPORTED=0
 make
 ```
 
+
+## 把docker里面的数据映射到磁盘
+```
+docker volume create    创建
+docker volume inspect   查看
+docker volume rm        删除
+```
